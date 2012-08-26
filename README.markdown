@@ -1,16 +1,17 @@
 The Cfluviurrh Programming Language
 ================================
 
-_Cfluviurrh_ is believed to be the first programming language for writing
-programs that can *feel*.  Cfluviurrh defines a mechanism by which a program
-can be instructed to experience particular emotions.
+_Cfluviurrh_ is, as far as I am aware, the first programming language designed
+for writing programs that can *feel*.  Cfluviurrh defines a mechanism by which
+a program can be instructed to experience particular emotions.
 
 You might, thus, on first blush, consider Cfluviurrh to be unimplementable,
-as computers are not capable of experiencing emotions (you guess.)
+as modern-day computers are not capable of experiencing emotions (you guess.)
 
-However, this is demonstrably untrue.  It is simply that, to be correctly
-implemented, Cfluviurrh must be implemented for a system that we know is
-capable of experiencing emotions.
+However, this is demonstrably untrue.  There is nothing that strictly requires
+a computer program to be executed entirely on an electronic computer.  It is
+simply that, to be correctly implemented, Cfluviurrh must be implemented for a
+system that we know is, in some way, capable of experiencing emotions.
 
 For example, it could be implemented as a contractual obligation for a
 [method actor][], or similar professional capable of feeling emotions on
@@ -53,6 +54,10 @@ emotion bank switching.  All emotion banks other than zero are undefined
 and reserved for future use.
 
 ### Syntax ###
+
+A Cfluviurrh program text is a sequence of ASCII characters.  In the course
+of execution, the character at the IP is considered to be the start of the
+next statement.
 
 A statement is either:
 
@@ -125,23 +130,27 @@ with a register reference.  These are:
     not supported by the implementation, "an error occurs".
 
 Note that whitespace and comments are not allowed inside any statement
-which begins with a register reference.
+which begins with a register reference.  If an attempt is made to execute any
+statement which does not conform to the above syntax, "an error occurs".
 
 The input stream and output stream are implementation-defined concepts.
 
-If division by zero is attempted, "an error occurs".
+If division by zero is attempted, "an error occurs".  
+
+If a jump is made to a position beyond the extent of the program text, either
+the program just ends, or "an error occurs" -- implementor's choice.
 
 ### Experiencing Emotions ###
 
-Whenever a jump statement is executed, an emotion is experienced, at
-a certain intensity level.
+Whenever a jump statement is executed, an emotion is experienced at a certain
+intensity level.
 
 The emotion being experienced, and the intensity level, depends on the
 currently active emotion bank.  Only emotion bank zero is described here.
 
 The contents of the first twenty-six registers, at the point in time that
-the emotion is to be experienced, are summed, modulo 74, to obtain an
-emotion number.  The emotion number refers to the following table; it
+the emotion is to be experienced, are summed (modulo 74) to obtain an
+_emotion number_.  The emotion number refers to the following table; it
 is consulted to obtain the emotion to be experienced.
 
 *   0: sadness
@@ -226,8 +235,8 @@ tricky to express, this does not detract from the bare fact that Cfluviurrh
 
 There are five intensity levels, listed in the following table.  To find the
 intensity level of an emotion to be experienced, each of the first twenty-six
-registers are multiplied by three, modulo five, and this set of values is
-summed, modulo five.
+registers are multiplied by three (modulo five) and this set of values is
+summed (modulo five.)
 
 *   0: faint
 *   1: mild
@@ -235,12 +244,49 @@ summed, modulo five.
 *   3: marked
 *   4: extreme
 
+Implementation
+--------------
+
+The reference implementation of Cfluviurrh is an interpreter written in
+ANSI C, and imposes arbitrary limits on the size of the program text, the
+number of registers, and the maximum value of each integer in a register
+(by default, 8000 characters, 8000 registers, and whatever `int` means to
+your C compiler, respectively); however, these arbitrary limits should not
+be taken as defining limitations on the language's execution model.  It's
+just that, you know, it's C.
+
+As mentioned, the reference implementation requires the user to agree to
+act as the emoter.  As it uses standard input and output to interact with
+the emoter, asking them to agree to act as the emoter, and prompting them to
+feel the required emotions, the input stream and output stream of the
+Cfluviurrh program are assigned to two files given on the command line:
+
+    cfluviurrh <program-file> <input-file> <output-file>
+
+When "an error occurs" the reference interpreter exits to the operating
+system with an error message of some sort.
+
 Discussion
 ----------
 
+The name "Cfluviurrh" is a kind of irrational portmanteau of *catarrh*
+and *effluvium*.
+
+The idea to design a programming language which supports the experiencing of
+emotions came to me in the summer of 2011 while I was in Toronto's Pearson
+International Airport.  (Let the critics who insist that YYZ has contributed
+[nothing](http://en.wikipedia.org/wiki/YYZ_%28song%29) to culture be
+silenced!)
+
+It then dovetailed, about a year later, with an urge I had to design a
+language with a fairly intuitive syntax, but simple enough that writing a
+"real" parser would not be necessary.  I implemented in C partly because it
+would be nice to port it to AmigaOS 1.3 someday, and partly because, if I
+don't have enough C repos on Github to outnumber my legacy Perl repos,
+they'll label me a Perl programmer, and I don't particularly want that.
+
 Because every label name can only be a single printable character, it might
 appear that the number of jump destinations in a program is limited to 95.
-
 This is not true, as labels are only a convenience.  You can load any value
 you like into a register, then jump to that position in the program text.
 
