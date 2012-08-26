@@ -100,11 +100,12 @@ with a register reference.  These are:
     which is followed by a label name.  A label with this label name
     is sought in the program and, if found, the position of the label
     in the program text (with 0 being the position of the first character
-    of the program, and with all characters, including whitespace, having
-    sequential positions within the program) is written to the register.
-    If there are multiple labels with the same label name, the one closest
-    to the start of the program text is chosen.  If a matching label is
-    not found, "an error occurs", whatever that means exactly.
+    of the program, and with all characters, including whitespace and
+    comments, having sequential positions within the program) is written to
+    the register.  If there are multiple labels with the same label name,
+    the one closest to the start of the program text is chosen.  If a
+    matching label is not found, "an error occurs", whatever that means
+    exactly.
 *   an _output statement_, which is where the register reference
     is followed by a `>` character.  The ASCII character with the same
     value as the contents of the register will be written to the program's
@@ -126,8 +127,11 @@ with a register reference.  These are:
     time a jump statement is executed.
 *   an _emotion bank switch statement_, which is where the register
     reference is followed by a `=` followed by a `>`.  The emotion bank
-    is switched to the value in the register.  If that emotion bank is
-    not supported by the implementation, "an error occurs".
+    is switched to the value in the register.  The previous emotion bank
+    number is then written to the register for posterity.  If that emotion
+    bank is not supported by the implementation, "an error occurs".  An
+    "error" may also "occur" if emotion bank switching is not supported
+    by the implementation.
 
 Note that whitespace and comments are not allowed inside any statement
 which begins with a register reference.  If an attempt is made to execute any
@@ -228,11 +232,6 @@ is consulted to obtain the emotion to be experienced.
 *   72: love
 *   73: lust
 
-(While some of the above may not be emotions per se, and while some
-combinations, such as "faint zeal", "mild rage", and "extreme apathy" may be
-tricky to express, this does not detract from the bare fact that Cfluviurrh
-*does* support experiencing emotions.)
-
 There are five intensity levels, listed in the following table.  To find the
 intensity level of an emotion to be experienced, each of the first twenty-six
 registers are multiplied by three (modulo five) and this set of values is
@@ -256,15 +255,21 @@ be taken as defining limitations on the language's execution model.  It's
 just that, you know, it's C.
 
 As mentioned, the reference implementation requires the user to agree to
-act as the emoter.  As it uses standard input and output to interact with
-the emoter, asking them to agree to act as the emoter, and prompting them to
-feel the required emotions, the input stream and output stream of the
-Cfluviurrh program are assigned to two files given on the command line:
+act as the emoter.  As it uses C's standard input and standard output to
+interact with the emoter, asking them to agree to act as the emoter, and
+prompting them to feel the required emotions, the input stream and output
+stream of the Cfluviurrh program are assigned to two files given on the
+command line:
 
     cfluviurrh <program-file> <input-file> <output-file>
 
-When "an error occurs" the reference interpreter exits to the operating
-system with an error message of some sort.
+To facilitate interactive Cfluviurrh programs, the input-file and
+output-file may be named pipes, or (on AmigaOS) console devices, or
+something.
+
+When "an error occurs" the reference interpreter generally exits to the
+operating system with an error message of some sort.  Although, it may
+just crash, too.
 
 Discussion
 ----------
@@ -283,7 +288,14 @@ language with a fairly intuitive syntax, but simple enough that writing a
 "real" parser would not be necessary.  I implemented in C partly because it
 would be nice to port it to AmigaOS 1.3 someday, and partly because, if I
 don't have enough C repos on Github to outnumber my legacy Perl repos,
-they'll label me a Perl programmer, and I don't particularly want that.
+they'll label Cat's Eye Technologies a Perl outfit, and I don't particularly
+want that.
+
+While some of the entries in the emotion table may not be emotions per se,
+and while some combination of intensity and emotion, such as "faint zeal",
+"mild rage", and "extreme apathy" may be tricky to express, this does not
+detract from the bare fact that Cfluviurrh *does* support experiencing
+emotions.
 
 Because every label name can only be a single printable character, it might
 appear that the number of jump destinations in a program is limited to 95.
