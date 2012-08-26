@@ -1,5 +1,5 @@
 The Cfluviurrh Programming Language
-================================
+===================================
 
 _Cfluviurrh_ is, as far as I am aware, the first programming language designed
 for writing programs that can *feel*.  Cfluviurrh defines a mechanism by which
@@ -275,7 +275,8 @@ Discussion
 ----------
 
 The name "Cfluviurrh" is a kind of irrational portmanteau of *catarrh*
-and *effluvium*.
+and *effluvium*.  I hope I'm never asked to present on it at a conference,
+because I'm not quite sure how to pronounce it.
 
 The idea to design a programming language which supports the experiencing of
 emotions came to me in the summer of 2011 while I was in Toronto's Pearson
@@ -291,11 +292,20 @@ don't have enough C repos on Github to outnumber my legacy Perl repos,
 they'll label Cat's Eye Technologies a Perl outfit, and I don't particularly
 want that.
 
+One of the design challenges (though not, I should not, a very difficult one)
+was making it so that every non-trivial Cfluviurrh program experienced *some*
+emotion.  Tying it to the conditional jump statement solved that problem.
+The upshot is that "Hello, world!" feels nothing at all, while "99 bottles"
+or printing out the ASCII table goes through a bewildering array of emotions.
+
 While some of the entries in the emotion table may not be emotions per se,
 and while some combination of intensity and emotion, such as "faint zeal",
 "mild rage", and "extreme apathy" may be tricky to express, this does not
 detract from the bare fact that Cfluviurrh *does* support experiencing
 emotions.
+
+Cfluviurrh is Turing-complete.  Proof of this is left as an exercise for the
+reader (don't you hate it when authors say that?)
 
 Because every label name can only be a single printable character, it might
 appear that the number of jump destinations in a program is limited to 95.
