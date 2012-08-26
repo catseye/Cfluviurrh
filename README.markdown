@@ -288,7 +288,7 @@ silenced!)
 
 It then dovetailed, about a year later, with an urge I had to design a
 language with a fairly intuitive syntax, but simple enough that writing a
-"real" parser would not be necessary.  I implemented in C partly because it
+"real" parser would not be necessary.  I implemented it in C partly because it
 would be nice to port it to AmigaOS 1.3 someday, and partly because, if I
 don't have enough C repos on Github to outnumber my legacy Perl repos,
 they'll label Cat's Eye Technologies a Perl outfit, and I don't particularly
@@ -301,7 +301,7 @@ The upshot is that "Hello, world!" feels nothing at all, while "99 bottles"
 or printing out the ASCII table goes through a bewildering array of emotions.
 
 While some of the entries in the emotion table may not be emotions per se,
-and while some combination of intensity and emotion, such as "faint zeal",
+and while some combinations of intensity and emotion, such as "faint zeal",
 "mild rage", and "extreme apathy" may be tricky to express, this does not
 detract from the bare fact that Cfluviurrh *does* support experiencing
 emotions.
