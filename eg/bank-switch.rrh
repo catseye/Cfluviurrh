@@ -1,0 +1,9 @@
+(
+  This is the syntax for switching the emotion bank; however, implementations
+  are not expected to support this, and indeed, no emotion banks besides bank
+  zero are currently defined.  So this is mostly to test that an
+  implementation considers this an error.
+)
+
+d=1
+d=>
