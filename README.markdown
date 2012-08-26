@@ -1,6 +1,8 @@
 The Cfluviurrh Programming Language
 ===================================
 
+Version 1.0
+
 _Cfluviurrh_ is, as far as I am aware, the first programming language designed
 for writing programs that can *feel*.  Cfluviurrh defines a mechanism by which
 a program can be instructed to experience particular emotions.

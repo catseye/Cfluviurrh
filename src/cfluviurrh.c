@@ -1,3 +1,11 @@
+/*
+ * cfluviurrh.c
+ * reference interpreter for
+ * the Cfluviurrh programming language, version 1.0
+ * Copyright (c)2012, Chris Pressey, Cat's Eye Technologies
+ * covered under a BSD-style license: see LICENSE
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
