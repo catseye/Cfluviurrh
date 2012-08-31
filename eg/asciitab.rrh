@@ -1,12 +1,15 @@
-a=8
+(print out ASCII table while experiencing a bewildering array of emotions)
+
+a=8     (initialize "a" register to 64)
 a*=8
-b=a
+b=a     (initialize "b" register to 126)
 b+=a
 b-=2
 
-:X
+:X      (label for top of loop)
 a+=1
-a>
+a>      (write out contents of a register as an ASCII character)
 
-z@=X
-z?a<b
+z@=X    (assign address of label X to "z" register)
+z?a<b   (jump to address in "z" register if "a" is less than "b", and
+         experience an emotion based on the values of the registers "a"-"z")
