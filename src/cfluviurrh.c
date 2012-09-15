@@ -259,7 +259,7 @@ contractually_obligate_emoter(void)
       "[on behalf of this program, tasks that the system on which   ]\n"
       "[this program is running may not be capable of.              ]\n"
       "[In particular, you may be asked to express certain emotions.]\n"
-      "[Your experience of these emotions be genuine.               ]\n"
+      "[Your experience of these emotions must be genuine.          ]\n"
       "\n"
       "[Do you agree to act as the EMOTER?                          ]\n"
       "[If so, press the letter 'Y' on your keyboard, then Enter.   ] ");
@@ -327,6 +327,7 @@ main(int argc, char **argv)
                 ip++;
             } else if (*ip == '>') {
                 fputc(mem[ref], output);
+                fflush(output);
                 ip++;
             } else if (*ip == '<') {
                 mem[ref] = fgetc(input);
